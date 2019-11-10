@@ -1,0 +1,52 @@
+<!doctype html>
+  <html>
+    <head>
+      <link rel="stylesheet" href="/static/xterm/xterm.css" />
+      <script src="/static/xterm/xterm.js"></script>
+    </head>
+    <body>
+      <div style="clear: both;">
+          <input type="hidden" id="sid" value="{{ .sid }}">
+          <input type="text" id="msg">
+          <input type="submit" id="sendBtn" value="发送">
+      </div>
+      <div id="terminal"></div>
+    </body>
+  </html>
+  <script>
+       var term = new Terminal();
+     term.open(document.getElementById('terminal'));
+     var url = "ws://127.0.0.1:8080/api/ws";
+     var ws = new WebSocket(url);
+     ws.onopen = function() {
+         console.log("connect ...");
+         var  object = {};
+         object['msg_type'] = 1;
+         object['token'] = '';
+         object['server_id'] = document.getElementById("sid").value;
+         object['command'] = '';
+         var firstmsg = JSON.stringify(object);
+         ws.send(firstmsg);
+     };
+     ws.onclose = function() {
+         console.log("close");
+     };
+     ws.onmessage = function(ev) {
+         term.write(ev.data)
+     };
+     document.getElementById("sendBtn").onclick = function() {
+         var msg = document.getElementById("msg").value;
+         if(msg.length == 0) {
+             alert("不能为空");
+         }
+         var  object = {};
+         object['msg_type'] = 2;
+         object['token'] = '';
+         object['server_id'] = '';
+         object['command'] = document.getElementById("msg").value;
+         var msg = JSON.stringify(object);
+         ws.send(msg);
+         return false;
+     };
+     
+   </script>

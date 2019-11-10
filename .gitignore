@@ -1,0 +1,7 @@
+.idea
+.vscode
+debug
+*.log
+*.git
+*.exe
+website/
