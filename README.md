@@ -1,4 +1,4 @@
-<h1>GOAPP</h1>
+<h1>gowebssh</h1>
 
 <div>
  基于goapp+xterm实现webssh-网页上的SSH终端 <br/>
