@@ -15,6 +15,8 @@ go get -v github.com/it234/gowebssh
 
 ### 运行
 
+- 可以直接下载体验，下载地址: https://pan.baidu.com/s/1cgMF0rXf5hlx0DF3N7nVUw 提取码: have ，下载后直接运行gowebssh.exe，然后添加你的服务器信息即可。
+
 - 运行服务端：cd cmd/manageweb，go run main.go，运行成功后打开 127.0.0.1:8080，如果是在windows下操作，需要提前安装并配置好mingw（sqlite的操作库用到），安装方式请自行百度/谷歌。
 - 配置文件在(`cmd/manageweb/config.yaml`)中，用户默认为：admin/123456
 
